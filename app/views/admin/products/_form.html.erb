@@ -1,0 +1,30 @@
+<div style = "margin-left:20px;">
+<%= form_for([@category,@product], :url => admin_products_url, :html => {:multipart => true}) do |f|%>
+  <ul>
+  	<% @product.errors.full_messages.each do |error|%>
+  	  <%= error %>
+  	<% end %>
+  </ul>
+
+  <p>
+    <%= f.label :category %>
+    <%= f.select :category_id , options_for_select(@categories.map{|c| [c.name , c.id]})  %>
+  </p>
+
+  <p>
+  	<%= f.label :image %>
+  	<%= f.file_field :image %>
+  </p>
+  <p>
+  	<%= f.label :price %>
+  	<%= f.text_field :price %>
+  </p>
+  <p>
+  <%= f.label :description%>
+    <%= f.text_area :description , :cols => "50", :rows => "5"%>
+</p>
+  <p>
+  	<%= f.submit %>
+  </p>
+<% end %>
+</div>

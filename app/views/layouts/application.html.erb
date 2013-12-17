@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>CISShoppingCart</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+
+</head>
+<body style="background: #EEEEEE;">
+<div style = "float: right;margin-right: 23px;">
+  <% if user_signed_in? %>  <%= current_user.email %> &nbsp; |
+  <%= link_to "Products", products_path %> &nbsp;|
+  <%= link_to "Categories", categories_path%>&nbsp;|
+ <%= link_to "Sign out", destroy_user_session_path, :method => :delete %> 
+<% else %> 
+<%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %> 
+<% end %> 
+</div>
+<body>
+<h1>
+<form name="Form1">
+<input type="text" size="8" name="Clock"> </form>
+<script>
+function update()
+{
+var today=new Date();
+var hours=today.getHours();
+var minutes=today.getMinutes();
+var seconds=today.getSeconds();
+if (hours<10)
+hours="0"+hours;
+if (minutes<10)
+minutes="0"+minutes;
+if (seconds<10)
+seconds="0"+seconds;
+document.Form1.Clock.value=hours+":"+minutes+":"+seconds;
+setTimeout("update()",1000);
+}
+update();
+</script> 
+</h1>
+<div> <%= flash[:notice]%>
+</div>
+<%= yield %>
+
+</body>
+</html>

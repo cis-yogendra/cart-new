@@ -1,0 +1,36 @@
+<div style = "margin-left:20px">
+	<table>
+		<tr>
+			<%= @category.name%>
+			<% @category.products.each_with_index do |product,index| %>
+				<% if (index%4) == 0 %>
+		    	<% end %>
+				<td style = "border: 1px solid black; padding: 50px;">
+					<div style = "width:100px">
+						<%= image_tag product.image.url(:small)%>
+					</div>
+	            	<%= product.description%>
+					<%= product.price%>
+				</td>
+			<%end%>
+			<h3>Number of Products{<%= @category.products.count %>}</h3>
+		</tr>
+		<tr>
+			<% @category.sub_categories.each_with_index do |sub_category,index|%>
+				<% sub_category.products.each do |product| %>
+					<% if (index%4) == 0%>
+					<%end%>
+						<td style = "border: 1px solid black; padding: 50px;">
+							<div style = "width:100px">
+								<%= link_to image_tag(product.image.url(:small)), product_path(product)%>
+							</div>
+			            	<%= product.description%>
+							<%= product.price%>
+						</td>
+				<%end%>
+			<%end%>
+			
+		</tr>
+	</table>
+</div>
+

@@ -1,0 +1,31 @@
+<div style = "margin-left:20px">
+	<table>
+		<h3>Number of Products{<%= @category.products.count %>}</h3>
+		<tr>
+			<%= @category.name%>
+			<% @category.products.each do |product| %>
+				<td style = "border: 1px solid black; padding: 50px;">
+					<div style = "width:100px">
+						<%= link_to image_tag(product.image.url(:small)), admin_product_path(product)%>
+					</div>
+	            	<%= product.description%>
+					<%= product.price%>
+				</td>
+			<%end%>
+		</tr>
+		<tr>
+			<% @category.sub_categories.each do |sub_category|%>
+				<% sub_category.products.each do |product| %>
+					<td style = "border: 1px solid black; padding: 50px;">
+						<div style = "width:100px">
+							<%= link_to image_tag(product.image.url(:small)), admin_product_path(product)%>
+						</div>
+		            	<%= product.description%>
+						<%= product.price%>
+					</td>
+				<%end%>
+			<%end%>
+		</tr>
+	</table>
+</div>
+<%= link_to "Add Product", new_admin_product_path%>

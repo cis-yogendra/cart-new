@@ -1,0 +1,22 @@
+<div style = "margin-left:20px;">
+<%= form_for( @category , :url => admin_categories_url ) do |f|%>
+<ul>
+	<% @category.errors.full_messages.each do |error| %>
+	<%= error %>
+	<% end %>
+</ul>
+
+<p>
+	<%= f.label :parent%>
+	<%= f.select("parent_id", @categories.collect{|p| [ p.name, p.id ] }, {:include_blank => 'Select category'})%>
+</p>
+
+<p>
+	<%= f.label :name%>
+    <%= f.text_area :name , :cols => "50", :rows => "5"%>
+</p>
+<p>
+	<%= f.submit %>
+</p>
+<% end %>
+</div>

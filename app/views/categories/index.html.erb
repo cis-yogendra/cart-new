@@ -1,0 +1,15 @@
+<div style = "margin-left:50px;">
+<% @categories.each do |category|%>
+    <ul>
+      <li>
+        <p><%= link_to "#{category.name}", category_path(category) %>
+      <ul>
+      <% category.sub_categories.each do |sub_category| %>    
+        <li>
+          <p><%= link_to "#{sub_category.name}", category_path(sub_category)%> 
+        </li>
+      <%end%>
+      </ul>
+    </ul>
+  <% end %>
+</div>
